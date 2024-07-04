@@ -1,0 +1,467 @@
+{
+	"info": {
+		"_postman_id": "5cdc9ae9-4025-4b1d-ab0e-5bf137217d1f",
+		"name": "WebStore",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "29937735"
+	},
+	"item": [
+		{
+			"name": "products",
+			"item": [
+				{
+					"name": "get products",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8181/products",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8181",
+							"path": [
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "product details",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8181/products/123",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8181",
+							"path": [
+								"products",
+								"123"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create products",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"title\": \"Classic Black Sneakers - Timeless Style for Every Step\",\r\n  \"description\": \"Indulge in luxurious softness with our Premium Cotton T-Shirt. Crafted from the finest cotton fibers, this tee offers a sumptuously soft feel against the skin. Perfect for layering or wearing on its own, it's the epitome of casual luxury and everyday comfort.\",\r\n  \"color\": \"bluelight\",\r\n  \"gender\": \"male\",\r\n  \"image\": {\r\n    \"url\": \"https://i.im.ge/2024/05/07/ZZYVc0.Mens-Clothing-yellow-t-shirt.jpeg\",\r\n    \"alt\": \"Tshirt for mens\"\r\n  },\r\n  \"category\": \"Footwear\",\r\n  \"subcategory\": \"Shose\",\r\n  \"price\": \"29.99$\",\r\n    \"Discount\": \"29.99$\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8181/products",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8181",
+							"path": [
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "liked products",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"userID\":\"6643bdef6c3821daf6a5b779\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8181/products/663f83e32ef00a03f67f4a17/likeProduct",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8181",
+							"path": [
+								"products",
+								"663f83e32ef00a03f67f4a17",
+								"likeProduct"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New Request",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjQzYmRlZjZjMzgyMWRhZjZhNWI3NzkiLCJpc0FkbWluIjp0cnVlLCJuYW1lIjp7ImZpcnN0IjoiRWR3YXJkIiwibWlkZGxlIjoiZWQiLCJsYXN0IjoiWWFkaWQiLCJfaWQiOiI2NjQzYmRlZjZjMzgyMWRhZjZhNWI3N2EifSwiaWF0IjoxNzE5MDg0OTE0fQ.oLVNp7qHzPs8QjILOHC0mw3Zv6gMJSfNHjybXmLTd1g",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8181/cart/6643bdef6c3821daf6a5b779/663f849d27142ae6d61d5488",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8181",
+							"path": [
+								"cart",
+								"6643bdef6c3821daf6a5b779",
+								"663f849d27142ae6d61d5488"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "filterProduct",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Color\":\"BlueLight\",\r\n    \r\n\"Subcategory\":\"Tshirt\",\r\n    \"minPrice\":\"10.00\",\r\n\"maxPrice\":\"99.99\"\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8181/products/filter",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8181",
+							"path": [
+								"products",
+								"filter"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateQauntity",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjQzYmRlZjZjMzgyMWRhZjZhNWI3NzkiLCJpc0FkbWluIjp0cnVlLCJuYW1lIjp7ImZpcnN0IjoiRWR3YXJkIiwibWlkZGxlIjoiZWQiLCJsYXN0IjoiWWFkaWQiLCJfaWQiOiI2NjQzYmRlZjZjMzgyMWRhZjZhNWI3N2EifSwiaWF0IjoxNzE5Njc4ODkzfQ.rF825CC6gEbbEqILXmMVvotADHsoDtBVkxJcRR4sBiA",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"productQunatity\":88}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8181/products/admin/quantity/663f83e32ef00a03f67f4a17",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8181",
+							"path": [
+								"products",
+								"admin",
+								"quantity",
+								"663f83e32ef00a03f67f4a17"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "subcategories",
+			"item": [
+				{
+					"name": "create subcategories",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"Tshirt\",\r\n\"image\": {\r\n        \"url\": \"https://i.im.ge/2024/05/11/ZJsjp0.Tshirt.jpeg\",\r\n        \"alt\": \"Tshirt\"\r\n        }\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8181/subcategory",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8181",
+							"path": [
+								"subcategory"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "users",
+			"item": [
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{    \"email\": \"edwardddd@gmailssss.com\",\r\n          \"password\": \"Abc!123Abc123\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8181/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8181",
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAllUsers",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "Delete user by admin",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjQzYmRlZjZjMzgyMWRhZjZhNWI3NzkiLCJpc0FkbWluIjp0cnVlLCJuYW1lIjp7ImZpcnN0IjoiZWRzIiwibWlkZGxlIjoiZWQiLCJsYXN0IjoiZWQiLCJfaWQiOiI2NjQzYmRlZjZjMzgyMWRhZjZhNWI3N2EifSwiaWF0IjoxNzE4MzgzNjA1fQ.XKmJFDvhQI_eRAVmtiSsIf7i06AwzbOiKipXObPy6mQ",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"userID\":\"665b5a8be636e2dff3937642\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8181/users/admin/deleteuser",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8181",
+							"path": [
+								"users",
+								"admin",
+								"deleteuser"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "changePermissionByAdmin",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8181/users/admin/changePermission/66421c3d53cbe1767b2e4b2a",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8181",
+							"path": [
+								"users",
+								"admin",
+								"changePermission",
+								"66421c3d53cbe1767b2e4b2a"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "cart",
+			"item": [
+				{
+					"name": "create new cart",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \r\n       \r\n  \"items\": {\r\n    \"product\": \"663f849d27142ae6d61d5488\",\r\n    \"quantity\": 2\r\n  }\r\n\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8181/cart/6643bdf96c3821daf6a5b780",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8181",
+							"path": [
+								"cart",
+								"6643bdf96c3821daf6a5b780"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get cart user",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "delete cart user",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \r\n    \"_id\":\"665b6c1fcd1861fae15913c0\",\r\n     \"user\":\"6643bdef6c3821daf6a5b779\"\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8181/cart/6643bdf96c3821daf6a5b780/delete",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8181",
+							"path": [
+								"cart",
+								"6643bdf96c3821daf6a5b780",
+								"delete"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "order",
+			"item": [
+				{
+					"name": "create new order",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8181/order/6643bdef6c3821daf6a5b779",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8181",
+							"path": [
+								"order",
+								"6643bdef6c3821daf6a5b779"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "changfeStatus",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\r\n    \"orderID\":\"666816282e1cd7a24eb6d12c\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8181/order/manage/status",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8181",
+							"path": [
+								"order",
+								"manage",
+								"status"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
