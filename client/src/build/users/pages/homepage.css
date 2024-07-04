@@ -1,0 +1,12 @@
+.grid-container {
+  display: flex;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto;
+  gap: 10px;
+}
+
+
+.content {
+  grid-column: 2 / span 2;
+}
+

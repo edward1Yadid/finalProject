@@ -1,0 +1,15 @@
+
+.cart-container {
+    display: flex;
+    justify-content: center;
+
+  }
+  
+  .cart {
+    width: 500px; 
+    padding: 10px;
+
+  }
+  
+
+  
