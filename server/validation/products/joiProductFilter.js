@@ -30,7 +30,6 @@ const productValidationFilter = (filterProduct) => {
 
     Subcategory: Joi.string()
       .valid("Tshirt", "Pants","Shose")
-      .required()
       .label("Subcategory"),
       Category: Joi.string()
       .valid("Mens-Clothing", "Womens-Clothing", "Footwear", "Kids-Clothing")

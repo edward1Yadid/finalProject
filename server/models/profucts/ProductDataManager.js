@@ -188,7 +188,6 @@ const filterProductUser = async (filterProduct) => {
 
       const { minPrice, maxPrice, Color, Subcategory, Category } =
         filterProduct;
-      console.log(minPrice, maxPrice, Color, Subcategory, Category);
       const query = {};
 
       if (minPrice) {
@@ -207,6 +206,7 @@ const filterProductUser = async (filterProduct) => {
       if (Category) {
         query.category = { category: { $eq: Category } };
       }
+      
       if (minPrice && maxPrice) {
         query.price = {
           $gte: minPrice,
@@ -223,7 +223,6 @@ const filterProductUser = async (filterProduct) => {
         };
       }
       const filteredProducts = await productsCollection.find(query).toArray();
-      console.log(filteredProducts);
       await client.close();
       return filteredProducts;
     } catch (error) {

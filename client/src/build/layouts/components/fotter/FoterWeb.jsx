@@ -12,7 +12,7 @@ import EmailIcon from '@mui/icons-material/Email';
 function FoterWeb() {
   const navigate = useNavigate();
   return (
-    <AppBar sx={{ position: "sticky", bottom: 0, left: 0, right: 0, backgroundColor:"white",opacity:"0.8" ,display:"flex",alignItems:"center"}}>
+    <AppBar sx={{ position: "sticky", bottom: 0, left: 0, right: 0,opacity:"0.8" ,display:"flex",alignItems:"center"}}>
       <Toolbar>
         <BottomNavigation sx={{backgroundColor:"inherit"}}>
           <BottomNavigationAction

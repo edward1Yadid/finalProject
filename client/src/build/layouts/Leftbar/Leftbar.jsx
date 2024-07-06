@@ -7,7 +7,7 @@ const Leftbar = () => {
 
 <>
 <Logo ></Logo>
-{user && <Typography sx={{fontFamily:"cursive"}} variant="h5" color="white">hello:{user?.name?.first} {user?.name?.last}</Typography>}
+{user && <Typography sx={{fontFamily:"cursive",display:{xs:"none",md:"flex"}}} variant="h5" color="white">hello:{user?.name?.first} {user?.name?.last}</Typography>}
 </>
   );
 };

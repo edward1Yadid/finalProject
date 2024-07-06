@@ -7,13 +7,14 @@ const { createOrder, getAllOrdersByAdmin,changestatusOfOrder } = require("../../
 const {
   joiOrderCreate,
 } = require("../../validation/order/joivlidayioncreateorder");
+const config = require("config");
 const { authorizationForAccsesUser } = require("../../auth/user");
 const { handleError } = require("../../utils/handleErrorProducts");
 const discountPercent = 0.1;
 const taxRate = 0.07;
-const DB_URI = process.env.MONGODB_URI || "mongodb://localhost:27017/webstore";
-const client = new MongoClient(DB_URI);
-///handle error
+
+const ENVIRONMENT = config.get("NODE_ENV");
+let client;
 router.post("/:id", authorizationForAccsesUser, async (request, response) => {
   const userID = request.params.id;
   const { _id: userIDfromToken } = request.userAuthorization;
@@ -21,6 +22,23 @@ router.post("/:id", authorizationForAccsesUser, async (request, response) => {
     return handleError(response, 403, "Access denied");
   }
   try {
+
+
+    if (ENVIRONMENT === "development") {
+      const DB_URI =        process.env.MONGODB_URI || "mongodb://localhost:27017/webstore";
+      client = new MongoClient(DB_URI);
+    } else if (ENVIRONMENT === "production") {
+      const DB_PASSWORD = config.get("DB_PASSWORD");
+      const DB_NAME = config.get("DB_NAME");
+      const connectTocompassDB = `mongodb+srv://${DB_NAME}:${DB_PASSWORD}@cluster0.kxwl9ix.mongodb.net/WebStore`;
+      client = new MongoClient(connectTocompassDB);
+    }
+
+    if (!client) {
+      throw new Error(
+        "No MongoDB client available for the current environment"
+      );
+    }
     await client.connect();
     const db = client.db();
     const user = await User.findById(userID);
@@ -32,7 +50,7 @@ router.post("/:id", authorizationForAccsesUser, async (request, response) => {
     if (!detailsCart) {
       return response.status(404).json({ error: "Cart not found" });
     }
-    const cart_id = detailsCart._id;
+    const cart_id = detailsCart?._id;
     const pipeline = [
       { $match: { _id: cart_id } },
       { $unwind: "$items" },

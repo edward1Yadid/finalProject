@@ -1,11 +1,14 @@
 import { useCallback, useMemo, useState } from "react";
-import { createOrderByUser, getAllOrdersByAdmin } from "../axios/order/orderApiAxios";
+import {
+  createOrderByUser,
+  getAllOrdersByAdmin,
+} from "../axios/order/orderApiAxios";
 import { useNavigate } from "react-router-dom";
 import NavigateToComponents from "../../routers/navigatetoPages";
 import { useSnackbar } from "../../Providers/SnackBarProvider";
 function useFetchOrders() {
-  const snackMessage=useSnackbar()
-    const navigate=useNavigate()
+  const snackMessage = useSnackbar();
+  const navigate = useNavigate();
   const [Isloading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const [Orders, setOrders] = useState(null);
@@ -24,19 +27,19 @@ function useFetchOrders() {
       snackMessage("Order created successfully!", {
         color: "success",
         variant: "filled",
-        duration: 5000,
+        duration: 2000,
       });
-      navigate(NavigateToComponents.HomePage)
+      navigate(NavigateToComponents.HomePage);
       return order;
     } catch (error) {
       snackMessage("Failed to create order. Please try again.", {
         color: "error",
         variant: "filled",
-        duration: 5000,
+        duration: 2000,
       });
       requestStatusOrders(null, null, false, error);
     }
-  },[]);
+  }, []);
   const handleGetOrdersByAdmin = useCallback(async (userID) => {
     try {
       const orders = await getAllOrdersByAdmin(userID);
@@ -44,19 +47,19 @@ function useFetchOrders() {
       snackMessage("Order created successfully!", {
         color: "success",
         variant: "filled",
-        duration: 5000,
+        duration: 2000,
       });
-      navigate(NavigateToComponents.HomePage)
+      navigate(NavigateToComponents.HomePage);
       return orders;
     } catch (error) {
       snackMessage("Failed to create order. Please try again.", {
         color: "error",
         variant: "filled",
-        duration: 5000,
+        duration: 2000,
       });
       requestStatusOrders(null, null, false, error);
     }
-  },[]);
+  }, []);
 
   const value = useMemo(() => {
     return { Orders, error, Isloading, Order };
@@ -65,7 +68,7 @@ function useFetchOrders() {
   return {
     value,
     handleCreateOrderByUser,
-    handleGetOrdersByAdmin
+    handleGetOrdersByAdmin,
   };
 }
 

@@ -30,20 +30,20 @@ const {handleGetCartByUser}=useFetchCarts()
   if (error) return <ErrorPage errorMessage={error} />;
 
   if (categoires) {
-    if (!categoires.length)
+    if (!categoires?.length)
       return <Typography>Oops... it seems there are no categories to display</Typography>;
     return <Caterories categories={categoires} />;
   }
 
   if (products) {
-    if (!products.length)
+    if (!products?.length)
       return <Typography>Oops... it seems there are no products to display</Typography>;
     return <Products products={products} wishlistProduct={wishlistProduct} favoriteProduct={favoriteProduct} cart={cart} deleteProduct={deleteProduct}/>;
   }
 
 
   if (OrdersStatus) {
-    if (!OrdersStatus.length)
+    if (!OrdersStatus?.length)
       return <Typography>Oops... it seems there are no orders to display</Typography>;
     return <Orders OrdersStatus={OrdersStatus} changeStatus={changeStatus} />;
   }
@@ -53,7 +53,7 @@ const {handleGetCartByUser}=useFetchCarts()
 ExpirienceCustomers.propTypes = {
   Isloading: PropTypes.bool,
   categoires: PropTypes.array,
-  error: PropTypes.string,
+  error: PropTypes.object,
   products: PropTypes.array,
   usersSetting: PropTypes.array,
 };

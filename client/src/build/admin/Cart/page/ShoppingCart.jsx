@@ -17,7 +17,6 @@ function ShoppingCart() {
     async function fetchData() {
       try {
         if (user?._id) {
-          console.log(user?._id);
           const cartsFromData = await handleGetCartByUser(user?._id);
           if(!cartsFromData){
             navigate(NavigateToComponents.HomePage)

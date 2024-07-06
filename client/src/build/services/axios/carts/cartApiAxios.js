@@ -1,8 +1,7 @@
 import axios from "../axios";
 
-const UniqeToken = localStorage.getItem("token");
-console.log(UniqeToken);
 export const getCartByUser = async (userID) => {
+  const UniqeToken = localStorage.getItem("token");
   axios.defaults.headers.common["x-auth-token"] = `${UniqeToken}`;
   try {
 
@@ -24,6 +23,7 @@ export const getCartByUser = async (userID) => {
 };
 export const getCartByUserProduct = async (userID,productID) => {
   try {
+    const UniqeToken = localStorage.getItem("token");
     axios.defaults.headers.common["x-auth-token"] = `${UniqeToken}`;
     if (!userID || !productID) {
       return;
@@ -36,9 +36,9 @@ export const getCartByUserProduct = async (userID,productID) => {
   }
 };
 
-
 export const createCartByUser = async (userID, product, quantity) => {
   let items = [{ product, quantity }];
+  const UniqeToken = localStorage.getItem("token");
   axios.defaults.headers.common["x-auth-token"] = `${UniqeToken}`;
   try {
     const response = await axios.post(`/cart/${userID}/add`, { userID, items });
@@ -53,8 +53,10 @@ export const UpdateQuantityItemByuser = async (
   productID,
   newQuantity
 ) => {
-  axios.defaults.headers.common["x-auth-token"] = `${UniqeToken}`;
+
   try {
+    const UniqeToken = localStorage.getItem("token");
+    axios.defaults.headers.common["x-auth-token"] = `${UniqeToken}`;
     const response = await axios.put(`/cart/${userID}/update`, {
       userID,
       productID,
@@ -68,6 +70,7 @@ export const UpdateQuantityItemByuser = async (
 
 export const removeItemFromCartByUser = async (userID, productID) => {
   try {
+    const UniqeToken = localStorage.getItem("token");
     axios.defaults.headers.common["x-auth-token"] = `${UniqeToken}`;
     const response = await axios.delete("/cart/remove", {
       data: { userID, productID },

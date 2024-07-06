@@ -28,14 +28,14 @@ const handleGetCartByUser = useCallback(async (userID) => {
       snackMessage("Successfully retrieved your cart.", {
         color: "success",
         variant: "filled",
-        duration: 5000,
+        duration: 2000,
       });
       return carts;
     } catch (error) {
       snackMessage("Failed to retrieve your cart. Please try again.", {
         color: "success",
         variant: "filled",
-        duration: 5000,
+        duration: 2000,
       });
       requestStatusCarts(null, null, false, error);
     }
@@ -48,7 +48,7 @@ const handlermoveItemFromCart = useCallback(async (userID, productID) => {
       snackMessage("Item successfully removed from your cart.", {
         color: "success",
         variant: "filled",
-        duration: 5000,
+        duration: 2000,
       });
       requestStatusCarts(cart, null, false, null);
       return cart;
@@ -56,7 +56,7 @@ const handlermoveItemFromCart = useCallback(async (userID, productID) => {
       snackMessage("Failed to remove item from your cart. Please try again.", {
         color: "success",
         variant: "filled",
-        duration: 5000,
+        duration: 2000,
       });
       requestStatusCarts(null, null, false, error);
     }
@@ -69,7 +69,7 @@ const handleupdateQuantityOfProduct=useCallback(async (userID,productID, newQuan
     snackMessage("Item quantity successfully updated.", {
       color: "success",
       variant: "filled",
-      duration: 5000,
+      duration: 2000,
     });
     requestStatusCarts(null, carts, false, null);
     return carts;
@@ -77,7 +77,7 @@ const handleupdateQuantityOfProduct=useCallback(async (userID,productID, newQuan
     snackMessage("Failed to update item quantity. Please try again.", {
       color: "success",
       variant: "filled",
-      duration: 5000,
+      duration: 2000,
     });
     requestStatusCarts(null, null, false, error);
   }

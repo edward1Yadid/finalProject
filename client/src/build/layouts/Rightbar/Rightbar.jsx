@@ -9,7 +9,7 @@ function Rightbar() {
   return (
 <>
 <TextField
-      sx={{width:"150px",margin:"20px",borderRadius:"20px", border:"unset", color:"black"}}
+      sx={{width:"150px",margin:"20px",borderRadius:"20px", border:"unset", color:"black",}}
         id="search"
         label="Search"
         onChange={(event) => {

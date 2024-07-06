@@ -1,6 +1,6 @@
 import axios from "../axios";
 
-const UniqeToken = localStorage.getItem("token");
+
 
 export const loginApi = async (user) => {
   try {

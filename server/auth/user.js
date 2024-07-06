@@ -15,7 +15,6 @@ const authorizationForAccsesUser = (request, response, next) => {
   if (tokenGenerator === "jwt") {
     try {
       const tokenFromUser = request.header("x-auth-token");
-      console.log(tokenFromUser);
       if (!tokenFromUser)
         return handleError(response, 401, "Access denied. No token provided");
       const payLoadUser = verifyUserByAuth(tokenFromUser);

@@ -4,7 +4,7 @@ const initialFilterProduct = {
   maxPrice: "",
   Subcategory: "",
   Category:"",
-  Rating:""
+
 };
 
 export default initialFilterProduct;

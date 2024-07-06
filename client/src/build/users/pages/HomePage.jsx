@@ -161,8 +161,6 @@ function HomePage() {
                       </div>
                     </Box>
                   </Grid>
-                  <TextField sx={{ ml: 2, mt: 2.5 }} {...register("Rating")} type="text" label="Rating" error={!!errors.Rating} helperText={errors?.Rating?.message} />
-
                 </Grid>
 
                 <Grid container justifyContent="center" spacing={2} mt={2}>

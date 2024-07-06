@@ -23,13 +23,13 @@ function useFetchCategories() {
       snackMessage("Categories retrieved successfully.", {
         color: "success",
         variant: "filled",
-        duration: 5000,
+        duration: 2000,
       });
     } catch (error) {
       snackMessage("Failed to retrieve categories. Please try again.", {
         color: "error",
         variant: "filled",
-        duration: 5000,
+        duration: 2000,
       });
       requestStatusCategories(null, null, false, error);
     }

@@ -1,5 +1,4 @@
 import axios from "../axios";
-const UniqeToken = localStorage.getItem("token");
 export const getAllProducts = async () => {
   try {
     const prespone = await axios.get(`/products`);
@@ -14,12 +13,14 @@ export const filterProducts = async (category) => {
   try {
     const response = await axios.get(`/products/${category}`);
     return response.data;
+    
   } catch (error) {
     throw new Error(error.message);
   }
 };
 export const getProductProfile = async (productID) => {
   try {
+    
     const prespone = await axios.get(`/products/${productID}/details`);
     const { data } = prespone;
     return data;
@@ -29,8 +30,8 @@ export const getProductProfile = async (productID) => {
 };
 export const createNewProduct = async (product) => {
   try {
+    const UniqeToken = localStorage.getItem("token");
     axios.defaults.headers.common["x-auth-token"] = `${UniqeToken}`;
-    console.log(UniqeToken);
     const prespone = await axios.post(`/products`, product);
     const { data } = prespone;
     return data;
@@ -40,6 +41,7 @@ export const createNewProduct = async (product) => {
 };
 export const editProductDetails = async (productID, product) => {
   try {
+    const UniqeToken = localStorage.getItem("token");
     axios.defaults.headers.common["x-auth-token"] = `${UniqeToken}`;
     const prespone = await axios.put(`/products/${productID}`, product);
     const { data } = prespone;
@@ -49,8 +51,10 @@ export const editProductDetails = async (productID, product) => {
   }
 };
 export const deleteProductByAdmin = async (productID) => {
-  axios.defaults.headers.common["x-auth-token"] = `${UniqeToken}`;
+
   try {
+    const UniqeToken = localStorage.getItem("token");
+    axios.defaults.headers.common["x-auth-token"] = `${UniqeToken}`;
     const prespone = await axios.delete(`/products/${productID}`);
     const { data } = prespone;
     return data;
@@ -60,6 +64,7 @@ export const deleteProductByAdmin = async (productID) => {
 };
 export const addorremoveproductsfromwishlist = async (userID, ProductID) => {
   try {
+    const UniqeToken = localStorage.getItem("token");
     axios.defaults.headers.common["x-auth-token"] = `${UniqeToken}`;
     const response = await axios.patch(`/products/${ProductID}/wishlist`, {
       userID,
@@ -72,6 +77,7 @@ export const addorremoveproductsfromwishlist = async (userID, ProductID) => {
 };
 export const favoriteProductByUser = async (userID, ProductID) => {
   try {
+    const UniqeToken = localStorage.getItem("token");
     axios.defaults.headers.common["x-auth-token"] = `${UniqeToken}`;
     const response = await axios.patch(
       `/products/${ProductID}/favoriteProduct`,
@@ -86,6 +92,8 @@ export const favoriteProductByUser = async (userID, ProductID) => {
 
 export const filterProductsUser = async (filterProduct) => {
   try {
+    const UniqeToken = localStorage.getItem("token");
+    axios.defaults.headers.common["x-auth-token"] = `${UniqeToken}`;
     const response = await axios.get("/products/filter", {
       params: filterProduct,
     });
@@ -102,6 +110,7 @@ export const UpdateQunatity=async(productID,productQunatity)=>{
 
   try {
 
+    const UniqeToken = localStorage.getItem("token");
     axios.defaults.headers.common["x-auth-token"] = `${UniqeToken}`;
     const prespone = await axios.put(`/products/admin/quantity/${productID}`, {productQunatity});
     const { data } = prespone;

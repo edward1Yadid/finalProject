@@ -25,7 +25,8 @@ import Rightbar from "./Rightbar/Rightbar";
 
 function ResponsiveAppBar() {
   const user = useSelector((appState) => appState.user);
-const userAdmin= user?.isAdmin
+
+
   const navigate = useNavigate();
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
@@ -44,23 +45,22 @@ const userAdmin= user?.isAdmin
   const handleCloseUserMenu = (setting) => {
     setAnchorElUser(null);
     if (setting.text === "Logout") {
-
+      navigate(NavigateToComponents.HomePage)
       appStore.dispatch(authActionCreator.logout());
       localStorage.removeItem("token");
-      navigate(NavigateToComponents.HomePage)
+  
     }
   };
 
   const settingsAdmin = [{text:"Dashboard", path:`${NavigateToComponents.CRM_DASHBOARD}`}, {text:"Orders", path:`${NavigateToComponents.Manageorders}`}, {text:"Products",path:`${NavigateToComponents.MANAGEQIANTITY}` },{text:"Logout"}];
   const settingsUser = [{text:"About",path:`${NavigateToComponents.About}`}, {text:"favorite",path:`${NavigateToComponents.FavoriteProfuctPage}`}, {text:"Wishlist",path:`${NavigateToComponents.wishlist}`}, {text:"Logout"}];
+ 
   const menuItems = [
-    { text: "Mens-Clothing", path: `${NavigateToComponents.MEN_CLOTHING}` },
-    { text: "Womens-Clothing", path: `${NavigateToComponents.WOMEN_CLOTHING}` },
-    { text: "Kids-Clothing", path: `${NavigateToComponents.KIDS_CLOTHING}` },
-    { text: "Footwear", path: `${NavigateToComponents.FOOTWAER}` },
-    { text: "WishList", path: `${NavigateToComponents.wishlist}` },
-    {text: "Favorite Product",path: `${NavigateToComponents.FavoriteProfuctPage}`},
-    {text: "Shopping Cart",path: `${NavigateToComponents.CART}/${user?._id}`} ];
+    { text: "Mens-Clothing", path: `${NavigateToComponents.MEN_CLOTHING}` }, { text: "Womens-Clothing", path: `${NavigateToComponents.WOMEN_CLOTHING}` }, { text: "Kids-Clothing", path: `${NavigateToComponents.KIDS_CLOTHING}` },
+    { text: "Footwear", path: `${NavigateToComponents.FOOTWAER}` }, { text: "WishList", path: `${NavigateToComponents.wishlist}` }, { text: "Favorite Product", path: `${NavigateToComponents.FavoriteProfuctPage}` },
+    { text: "Shopping Cart", path: `${NavigateToComponents.CART}/${user?._id}` }
+  ];
+  
   return (
     <AppBar position="sticky" >
       <Container maxWidth="xxl" >
@@ -68,7 +68,7 @@ const userAdmin= user?.isAdmin
           
           <Leftbar />
         
-          <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } ,flexWrap:"wrap"}}>
+          <Box sx={{  display: { xs: "flex", md: "none" } ,flexWrap:"wrap"}}>
             <IconButton
               size="large"
               aria-label="account of current user"
@@ -111,64 +111,58 @@ const userAdmin= user?.isAdmin
               ))}
             </Menu>
           </Box>
-
           <MenuBar />
 
-          <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 2 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
-              </IconButton>
-            </Tooltip>
-            <Menu
-              sx={{ mt: "45px" }}
-              id="menu-appbar"
-              anchorEl={anchorElUser}
-              anchorOrigin={{
-                vertical: "bottom",
-                horizontal: "left",
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: "top",
-                horizontal: "left",
-              }}
-              open={Boolean(anchorElUser)}
-              onClose={handleCloseUserMenu}
-            >
-          {userAdmin && settingsAdmin.map((setting,index) => (
-  <MenuItem
-    key={index}
-    onClick={() => {
-      handleCloseUserMenu(setting);
-      navigate(setting.path);
-    
-      
-      
-    }}
-  >
-    <Typography>{setting.text}</Typography>
-  </MenuItem>
-))}
-          {!userAdmin && settingsUser.map((setting,index) => (
-  <MenuItem
-    key={index}
-    onClick={() => {
-      handleCloseUserMenu(setting);
-      navigate(setting.path);
-    
-      
-      
-    }}
-  >
-    <Typography>{setting.text}</Typography>
-  </MenuItem>
-))}
 
-
-
-            </Menu>
-          </Box>
+<Box >
+<Tooltip title="Open settings">
+  <IconButton onClick={handleOpenUserMenu} >
+    <Avatar alt="Remy Sharp" src="./static/images/avatar/2.jpg" />
+  </IconButton>
+</Tooltip>
+<Menu
+  sx={{ mt: "45px" }}
+  id="menu-appbar"
+  anchorEl={anchorElUser}
+  anchorOrigin={{
+    vertical: "bottom",
+    horizontal: "left",
+  }}
+  keepMounted
+  transformOrigin={{
+    vertical: "top",
+    horizontal: "left",
+  }}
+  open={Boolean(anchorElUser)}
+  onClose={handleCloseUserMenu}
+>
+{user?.isAdmin ? (
+settingsAdmin.map((setting, index) => (
+<MenuItem
+key={index}
+onClick={() => {
+handleCloseUserMenu(setting);
+navigate(setting.path);
+}}
+>
+<Typography>{setting.text}</Typography>
+</MenuItem>
+))
+) : (
+settingsUser.map((setting, index) => (
+<MenuItem
+key={index}
+onClick={() => {
+handleCloseUserMenu(setting);
+navigate(setting.path);
+}}
+>
+<Typography>{setting.text}</Typography>
+</MenuItem>
+))
+)}
+</Menu>
+</Box>
 <Rightbar/>
         </Toolbar>
       </Container>

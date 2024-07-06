@@ -1,7 +1,7 @@
 const chalk = require("chalk");
 const mongoose = require("mongoose");
 const config = require("config");
-const { MongoClient } = require("mongodb");
+
 
 
 const DB_NAME = config.get("DB_NAME");
@@ -11,10 +11,7 @@ const connectToDatabaseAtlas = async () => {
   try {
 
 
-    await mongoose.connect(connectTocompassDB, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true
-    });
+    await mongoose.connect(connectTocompassDB);
 
     console.log(
       chalk.bgBlueBright(`Connected to MongoDB Atlas at ${mongoose.connection.host}`)

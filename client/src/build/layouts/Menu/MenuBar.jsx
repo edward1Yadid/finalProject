@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import Typography from "@mui/material/Typography";
 import { Box, IconButton } from "@mui/material";
 import { useSelector } from "react-redux";
-import ShoppingBasketIcon from "@mui/icons-material/ShoppingBasket";
+import LocalMallIcon from '@mui/icons-material/LocalMall';
 import useFetchCarts from "../../services/hooks/useFetchCarts";
 import { appStore } from "../../redux/Store";
 import { quantityActionCreator } from "../../redux/QuantitySlice";
@@ -82,7 +82,7 @@ function MenuBar() {
     <>
       <Box
         sx={{
-          flexGrow: 1,
+          flexGrow:1,
           display: { sm: "none", md: "flex" },
           justifyContent: "center",
       
@@ -100,25 +100,25 @@ function MenuBar() {
         {quantity >= 0 && (
           <Typography
             variant="h6"
-            sx={{ color: quantity > 0 ? "#4F6B78" : "black" }}
+
           >
             {quantity}
           </Typography>
         )}
         <IconButton
-          sx={{ backgroundColor: quantity > 0 ? "#4F6B78" : "white" }}
+
         >
-          <ShoppingBasketIcon />
+          <LocalMallIcon />
         </IconButton>
       </Box>
 
 
 
       {!user && (
-        <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
+        <Box>
           {menuItemUser.map((item, index) => (
             <NavItems key={index} handleMenuClick={() => navigate(item.path)}>
-              <Typography variant="body2" color="black">
+              <Typography variant="body2" color="white">
                 {item.text}
               </Typography>
             </NavItems>
@@ -131,7 +131,7 @@ function MenuBar() {
         <NavItems
           handleMenuClick={() => navigate(NavigateToComponents.CRM_DASHBOARD)}
         >
-          <Typography variant="h6" color="black">
+          <Typography variant="body2" color="white">
             CRM
           </Typography>
         </NavItems>

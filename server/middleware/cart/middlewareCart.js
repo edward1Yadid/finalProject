@@ -11,7 +11,7 @@ const {
 } = require("../../models/cart/CartDataManager");
 const { authorizationForAccsesUser } = require("../../auth/user");
 
-///handle error
+
 router.post("/:id/add",authorizationForAccsesUser, async (request, response) => {
   const { id: userID } = request.params;
   const { items } = request.body;
@@ -59,7 +59,7 @@ router.post("/:id/add",authorizationForAccsesUser, async (request, response) => 
     return handleErrorCartItem(response, 400, error.message);
   }
 });
-///handle error
+
 router.put("/:id/update",authorizationForAccsesUser, async (request, response) => {
   const { userID, productID, newQuantity } = request.body;
   try {
@@ -80,7 +80,7 @@ router.put("/:id/update",authorizationForAccsesUser, async (request, response) =
     return handleErrorCartItem(response, 400, error.message);
   }
 });
-///handle error
+
 router.delete("/remove",authorizationForAccsesUser, async (request, response) => {
 
   const {userID,productID} = request.body; 
@@ -97,7 +97,7 @@ router.delete("/remove",authorizationForAccsesUser, async (request, response) =>
     handleErrorCartItem(response, 400, error.message);
   }
 });
-///handle error
+
 router.get("/:id",authorizationForAccsesUser, async (request, response) => {
 
   
@@ -109,7 +109,7 @@ router.get("/:id",authorizationForAccsesUser, async (request, response) => {
     }
     const cart = await getCartByUser(userID);
     if (!cart) {
-      return handleError(response, 404, "Cart not found");
+      return 
     }
     response.status(200).json(cart);
   } catch (error) {

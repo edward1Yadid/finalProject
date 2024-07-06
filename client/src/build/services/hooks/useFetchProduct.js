@@ -37,7 +37,7 @@ function useFetchProduct() {
       snackMessage("Products retrieved successfully.", {
         color: "success",
         variant: "filled",
-        duration: 5000,
+        duration: 2000,
       });
       return products;
     } catch (error) {
@@ -45,7 +45,7 @@ function useFetchProduct() {
       snackMessage("Failed to retrieve products. Please try again.", {
         color: "error",
         variant: "filled",
-        duration: 5000,
+        duration: 2000,
       });
     }
   }, []);
@@ -58,14 +58,14 @@ function useFetchProduct() {
       snackMessage("Filtered products retrieved successfully.", {
         color: "success",
         variant: "filled",
-        duration: 5000,
+        duration: 2000,
       });
       return products;
     } catch (error) {
       snackMessage("Failed to retrieve filtered products. Please try again.", {
         color: "error",
         variant: "filled",
-        duration: 5000,
+        duration: 2000,
       });
       requestStatusProducts(null, null, false, error);
     }
@@ -79,7 +79,7 @@ function useFetchProduct() {
       snackMessage("Product details retrieved successfully.", {
         color: "success",
         variant: "filled",
-        duration: 5000,
+        duration: 2000,
       });
       return product;
     } catch (error) {
@@ -87,7 +87,7 @@ function useFetchProduct() {
       snackMessage("Failed to retrieve product details. Please try again.", {
         color: "error",
         variant: "filled",
-        duration: 5000,
+        duration: 2000,
       });
     }
   }, []);
@@ -100,7 +100,7 @@ function useFetchProduct() {
       snackMessage("Product created successfully.", {
         color: "success",
         variant: "filled",
-        duration: 5000,
+        duration: 2000,
       });
       return product;
     } catch (error) {
@@ -108,7 +108,7 @@ function useFetchProduct() {
       snackMessage("Failed to create product. Please try again.", {
         color: "error",
         variant: "filled",
-        duration: 5000,
+        duration: 2000,
       });
     }
   }, []);
@@ -121,7 +121,7 @@ function useFetchProduct() {
       snackMessage("Product details updated successfully.", {
         color: "success",
         variant: "filled",
-        duration: 5000,
+        duration: 2000,
       });
       return product;
     } catch (error) {
@@ -129,7 +129,7 @@ function useFetchProduct() {
       snackMessage("Failed to update product details. Please try again.", {
         color: "error",
         variant: "filled",
-        duration: 5000,
+        duration: 2000,
       });
     }
   }, []);
@@ -142,7 +142,7 @@ function useFetchProduct() {
       snackMessage("Product deleted successfully.", {
         color: "success",
         variant: "filled",
-        duration: 5000,
+        duration: 2000,
       });
       return product;
     } catch (error) {
@@ -150,7 +150,7 @@ function useFetchProduct() {
       snackMessage("Failed to delete product. Please try again.", {
         color: "error",
         variant: "filled",
-        duration: 5000,
+        duration: 2000,
       });
     }
   }, []);
@@ -163,9 +163,8 @@ function useFetchProduct() {
       snackMessage("Product added/removed from wishlist successfully.", {
         color: "success",
         variant: "filled",
-        duration: 5000,
+        duration: 2000,
       });
-      console.log(product);
       return product;
     } catch (error) {
       requestStatusProducts(null, null, false, error);
@@ -174,7 +173,7 @@ function useFetchProduct() {
         {
           color: "error",
           variant: "filled",
-          duration: 5000,
+          duration: 2000,
         }
       );
     }
@@ -190,14 +189,14 @@ function useFetchProduct() {
       snackMessage("Wishlist products retrieved successfully.", {
         color: "success",
         variant: "filled",
-        duration: 5000,
+        duration: 2000,
       });
     } catch (error) {
       requestStatusProducts(null, null, null, error);
       snackMessage("Failed to retrieve wishlist products. Please try again.", {
         color: "error",
         variant: "filled",
-        duration: 5000,
+        duration: 2000,
       });
     }
   });
@@ -210,14 +209,14 @@ function useFetchProduct() {
       snackMessage("Product favorited successfully.", {
         color: "success",
         variant: "filled",
-        duration: 5000,
+        duration: 2000,
       });
     } catch (error) {
       requestStatusProducts(null, null, null, error);
       snackMessage("Failed to favorite product. Please try again.", {
         color: "error",
         variant: "filled",
-        duration: 5000,
+        duration: 2000,
       });
     }
   }, []);
@@ -233,14 +232,14 @@ function useFetchProduct() {
       snackMessage("Favorite products retrieved successfully.", {
         color: "success",
         variant: "filled",
-        duration: 5000,
+        duration: 2000,
       });
     } catch (error) {
       requestStatusProducts(null, null, null, error);
       snackMessage("Failed to retrieve favorite products. Please try again.", {
         color: "error",
         variant: "filled",
-        duration: 5000,
+        duration: 2000,
       });
     }
   }, []);
@@ -249,12 +248,11 @@ function useFetchProduct() {
     setIsLoading(true);
     try {
       const products = await filterProductsUser(filterProduct);
-      console.log("products", products);
       requestStatusProducts(null, products, false, null);
       snackMessage("Products retrieved successfully.", {
         color: "success",
         variant: "filled",
-        duration: 5000,
+        duration: 2000,
       });
       return products;
     } catch (error) {
@@ -262,7 +260,7 @@ function useFetchProduct() {
       snackMessage("Failed to retrieve products. Please try again.", {
         color: "error",
         variant: "filled",
-        duration: 5000,
+        duration: 2000,
       });
     }
   }, []);

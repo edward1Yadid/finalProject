@@ -28,13 +28,12 @@ const {
   normalizeProductRawEdit,
 } = require("../../helpers/products/normalizedEditProduct");
 const { authorizationForAccsesUser } = require("../../auth/user");
-const { MongoClient } = require("mongodb");
+
 
 const router = express.Router();
 
 router.get("/", async (request, response) => {
   try {
-    console.log("hehehe");
     let categoires = await getAllProducts();
     return response.send(categoires);
   } catch (error) {
@@ -42,7 +41,7 @@ router.get("/", async (request, response) => {
   }
 });
 
-///handlerror
+
 router.get("/filter", async (request, response) => {
   try {
     const { minPrice, maxPrice, Color, Subcategory, Category } = request.query;
@@ -52,8 +51,9 @@ router.get("/filter", async (request, response) => {
       Color,
       Subcategory,
       Category,
+ 
     };
-    console.log(filterProduct);
+;
     const { error } = productValidationFilterservcise(filterProduct);
     if (error) {
       return handleErrorProducts(response, error.status, error.message);
@@ -64,7 +64,7 @@ router.get("/filter", async (request, response) => {
     return handleErrorProducts(response, error.status || 500, error.message);
   }
 });
-///handlerror
+
 router.get("/:categoryID", async (req, res) => {
   try {
     const { categoryID } = req.params;
@@ -75,7 +75,7 @@ router.get("/:categoryID", async (req, res) => {
   }
 });
 
-///handlerror
+
 router.get("/:id/details", async (request, response) => {
   try {
     const { id: ProductID } = request.params;
@@ -86,7 +86,7 @@ router.get("/:id/details", async (request, response) => {
   }
 });
 
-///handlerror
+
 router.post("/", authorizationForAccsesUser, async (request, response) => {
   try {
     const { isAdmin } = request.userAuthorization;
@@ -106,29 +106,29 @@ router.post("/", authorizationForAccsesUser, async (request, response) => {
   }
 });
 
-///handlerror
-// router.put("/:id", authorizationForAccsesUser, async (request, response) => {
-//   try {
-//     const { isAdmin } = request.userAuthorization;
-//     if (!isAdmin) {
-//       return handleError(response, 403, "Access denied");
-//     }
-//     const { id: ProductID } = request.params;
-//     let produtFromAdmin = request.body;
 
-//     const { error } = productValidationEditservcise(produtFromAdmin);
-//     if (error) {
-//       return handleErrorProducts(response, error.status, error.message);
-//     }
-//     let normalizedProduct = await normalizeProductRawEdit(produtFromAdmin);
-//     let products = await editProductByAdmin(ProductID, normalizedProduct);
-//     return response.send(products);
-//   } catch (error) {
-//     return handleErrorProducts(response, error.status || 500, error.message);
-//   }
-// });
+router.put("/:id", authorizationForAccsesUser, async (request, response) => {
+  try {
+    const { isAdmin } = request.userAuthorization;
+    if (!isAdmin) {
+      return handleError(response, 403, "Access denied");
+    }
+    const { id: ProductID } = request.params;
+    let produtFromAdmin = request.body;
 
-///handlerror
+    const { error } = productValidationEditservcise(produtFromAdmin);
+    if (error) {
+      return handleErrorProducts(response, error.status, error.message);
+    }
+    let normalizedProduct = await normalizeProductRawEdit(produtFromAdmin);
+    let products = await editProductByAdmin(ProductID, normalizedProduct);
+    return response.send(products);
+  } catch (error) {
+    return handleErrorProducts(response, error.status || 500, error.message);
+  }
+});
+
+
 router.delete("/:id", authorizationForAccsesUser, async (request, response) => {
   try {
     const { isAdmin } = request.userAuthorization;
@@ -142,7 +142,7 @@ router.delete("/:id", authorizationForAccsesUser, async (request, response) => {
     return handleErrorProducts(response, error.status || 500, error.message);
   }
 });
-///handlerror
+
 router.patch(
   "/:id/wishlist",
   authorizationForAccsesUser,
@@ -163,7 +163,7 @@ router.patch(
   }
 );
 
-///handlerror
+
 router.patch(
   "/:id/favoriteProduct",
   authorizationForAccsesUser,
@@ -205,35 +205,6 @@ router.put(
   }
 );
 
-const uri = "mongodb://localhost:27017/webstore";
-const client = new MongoClient(uri);
 
-router.put("/updateone", async (req, res) => {
-  try {
-    await client.connect();
-    const db = client.db("webstore");
-    const productsCollection = db.collection("products");
-
-    const generateRandomValue = () => Math.floor(Math.random() * 5) + 1;
-    const products = await productsCollection.find().toArray();
-    for (const product of products) {
-      await productsCollection.updateOne(
-        { _id: product._id },
-        {
-          $set: {
-            rating: generateRandomValue(),
-          },
-        }
-      );
-    }
-
-    await client.close();
-
-    res.status(200).send(`${products.length} products updated successfully`);
-  } catch (error) {
-    console.error(error);
-    res.status(500).send("Internal Server Error");
-  }
-});
 
 module.exports = router;

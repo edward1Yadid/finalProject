@@ -36,7 +36,6 @@ router.post("/", async (request, response) => {
 router.post("/login", async (request, response) => {
   try {
     const user = request.body;
-    console.log(user);
     const { error } = validateLogin(user);
     if (error) {
       return handleErrorUser(response, error.status || 500, error.message);

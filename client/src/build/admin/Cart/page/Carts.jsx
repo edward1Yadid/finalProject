@@ -14,7 +14,7 @@ useEffect(()=>{
   setNewcart(carts)
 },[carts])
 
-  if (!carts || carts.length === 0) {
+  if (!carts || carts?.length === 0) {
     return (
       <Typography variant="h4" color="initial">
         No product found
