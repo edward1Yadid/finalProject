@@ -4,7 +4,7 @@ import { IconButton } from "@mui/material";
 import  NavigateToComponents from "../../routers/navigatetoPages";
 
 const Logo = () => {
-    const imageUrl ="/images/E-commerce website.jpeg"
+    const imageUrl ="./assets/images/E-commerce website.jpeg"
   return (
     <Link
       to={NavigateToComponents.HomePage}

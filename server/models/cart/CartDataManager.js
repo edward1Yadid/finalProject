@@ -62,33 +62,6 @@ const removeItemCartByUser = async (userId, productId) => {
   }
 };
 
-const deleteCartByUser = async (userID, cartID) => {
-  if (DB === "MONGODB") {
-    try {
-      const cart = await Cart.findOne({ user: userID });
-      if (!cart) {
-        console.log(chalk.bgBlue("Cart not found in the database"));
-        return null;
-      }
-
-      const updatedCart = await Cart.findOneAndUpdate(
-        { user: userID },
-        { $pull: { items: { _id: cartID } } },
-        { new: true }
-      );
-      if (!updatedCart) {
-        console.log(chalk.bgBlue("Cart not found in the database"));
-        return null;
-      }
-
-      return updatedCart;
-    } catch (error) {
-      return handleBadRequest("Mongoose", error.status, error.message);
-    }
-  } else {
-    throw new Error("This environment doesn't use a MongoDB server");
-  }
-};
 const getProductQuantityFromCart = async (userID, productID) => {
   if (DB === "MONGODB") {
     try {
@@ -116,5 +89,4 @@ const getProductQuantityFromCart = async (userID, productID) => {
 exports.getCartByUser = getCartByUser;
 exports.createCart = createCart;
 exports.removeItemCartByUser = removeItemCartByUser;
-exports.deleteCartByUser = deleteCartByUser;
 exports.getProductQuantityFromCart = getProductQuantityFromCart;

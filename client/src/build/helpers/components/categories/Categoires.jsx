@@ -22,7 +22,7 @@ function categoires({ categories }) {
         alignItems={"center"}
       >
         {categories &&
-          categories.map((category, index) => {
+          categories?.map((category, index) => {
             return <Category category={category} key={index}></Category>;
           })}
       </Stack>

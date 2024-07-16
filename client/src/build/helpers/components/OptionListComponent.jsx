@@ -27,7 +27,7 @@ const genderOptions = [
    
         >
           <option value="" disabled></option>
-          {genderOptions.map(option => (
+          {genderOptions?.map(option => (
             <option key={option.value} value={option.value}>
               {option.label}
             </option>

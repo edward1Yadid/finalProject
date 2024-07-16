@@ -19,6 +19,7 @@ import FavoriteProductByUser from "../admin/favoriteProduct/FavoriteProductByUse
 import ManageOrders from "../admin/CRM/dashboard/orders/pages/ManageOrders.jsx";
 import MgangeQuantity from "../admin/products/pages/MgangeQuantity.jsx";
 import About from "../users/pages/About.jsx";
+import OurModels from "../components/OurModels.jsx";
 
 
 
@@ -33,6 +34,10 @@ function Router() {
 <Route
         path={NavigateToComponents.About}
         element={<About />}
+      ></Route>
+<Route
+        path={NavigateToComponents.OurModels}
+        element={<OurModels />}
       ></Route>
 
 

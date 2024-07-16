@@ -2,12 +2,12 @@ import React, { useEffect, useState } from "react";
 import Cart from "../Cart";
 import { Container, Grid, Stack, Typography } from "@mui/material";
 import CartDetails from "../CartDetails";
-import { useNavigate } from "react-router-dom";
+
 
 function Carts({ carts, onUpdateQuantity, onRemoveItem, cartUpdateState }) {
 
 const [newCart,setNewcart]=useState()
-const navigate=useNavigate()
+
 
 useEffect(()=>{
 

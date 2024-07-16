@@ -5,7 +5,7 @@ import CardContent from "@mui/material/CardContent";
 import ProductHead from "./ProductHead";
 import ProductBody from "./ProductBody";
 import ProductFooter from "./ProductFooter";
-
+import HeartAnimation from "./HeartAnimation";
 export default function ProductGeneral({ product,wishlistProduct,favoriteProduct,cart ,deleteProduct}) {
   return (
     <Card sx={{ maxWidth: 370, m: 5 }}>
@@ -16,6 +16,7 @@ export default function ProductGeneral({ product,wishlistProduct,favoriteProduct
       <CardActions>
         <ProductFooter product={product} wishlistProduct={wishlistProduct} favoriteProduct={favoriteProduct} cart={cart} deleteProduct={deleteProduct}/>
       </CardActions>
+
     </Card>
   );
 }

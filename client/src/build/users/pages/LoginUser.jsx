@@ -30,12 +30,13 @@ function LoginUser() {
   const onSubmit = async (data) => {
     try {
       let userFromAPI = await loginApi(data);
-
+      navigate(NavigateToComponents.HomePage)
+      // window.location.reload()Abc!123Abcnir
       localStorage.setItem("token", userFromAPI);
       let userdecode = jwtDecode(userFromAPI);
       console.log(userdecode);
       appStore.dispatch(authActionCreator.login(userdecode));
-          navigate(NavigateToComponents.HomePage)
+
     } catch (error) {
       console.error("Error during login:", error);
     }

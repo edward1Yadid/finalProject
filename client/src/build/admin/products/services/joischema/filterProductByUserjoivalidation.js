@@ -25,12 +25,16 @@ export const filterProductByUserjoivalidation = Joi.object({
     .required()
     .label("Color"),
   
-    Subcategory: Joi.string()
-    .valid("Tshirt", "Pants","Shose")
-    .label("Subcategory"),
+
     Category: Joi.string()
     .valid("Mens-Clothing", "Womens-Clothing", "Footwear", "Kids-Clothing")
     .required()
     .label("Category"),
+
+
+
+    Subcategory: Joi.string()
+    .valid("Tshirt", "Pants","Shose")
+    .label("Subcategory"),
     
 });

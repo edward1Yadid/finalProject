@@ -73,11 +73,6 @@ function MenuBar() {
       path: `${NavigateToComponents.CART}/${user?._id}`,
     },
   ];
-
-  const menuItemUser = [
-    { text: "Login", path: `${NavigateToComponents.LoginPage}` },
-    { text: "Rgister", path: `${NavigateToComponents.SignUp}` },
-  ];
   return (
     <>
       <Box
@@ -90,7 +85,7 @@ function MenuBar() {
 
         className={"buttonDisplay"}
       >
-        {menuItems.map((item, index) => (
+        {menuItems?.map((item, index) => (
           <NavItems key={index} handleMenuClick={() => navigate(item.path)}>
             <Typography variant="body1" color={"white"}>
               {item.text}
@@ -111,22 +106,6 @@ function MenuBar() {
           <LocalMallIcon />
         </IconButton>
       </Box>
-
-
-
-      {!user && (
-        <Box>
-          {menuItemUser.map((item, index) => (
-            <NavItems key={index} handleMenuClick={() => navigate(item.path)}>
-              <Typography variant="body2" color="white">
-                {item.text}
-              </Typography>
-            </NavItems>
-          ))}
-        </Box>
-      )}
-
-
       {user?.isAdmin && (
         <NavItems
           handleMenuClick={() => navigate(NavigateToComponents.CRM_DASHBOARD)}

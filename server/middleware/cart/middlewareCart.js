@@ -84,7 +84,7 @@ router.put("/:id/update",authorizationForAccsesUser, async (request, response) =
 router.delete("/remove",authorizationForAccsesUser, async (request, response) => {
 
   const {userID,productID} = request.body; 
-  
+
   const { _id:userIDfromToken } = request.userAuthorization;
   if (userIDfromToken !==userID) {
     return handleError(response, 403, "Access denied");

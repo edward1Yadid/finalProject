@@ -17,15 +17,13 @@ import BookmarkIcon from "@mui/icons-material/Bookmark";
 import { appStore } from "../../../redux/Store";
 import { quantityActionCreator } from "../../../redux/QuantitySlice";
 import useFetchCarts from "../../../services/hooks/useFetchCarts";
+import HeartAnimation from "./HeartAnimation";
+
 
 function ProductFooter({ product, wishlistProduct, favoriteProduct, cart,deleteProduct }) {
   const [quantity, setQuantity] = useState(0);
   const user = useSelector((appState) => appState.user);
-  const {
-    handleDeleteProductByAdmin,
-    handlewishlistUser,
-    handleFavoriteProductByUser,
-  } = useFetchProduct();
+  const {    handleDeleteProductByAdmin,    handlewishlistUser,  handleFavoriteProductByUser,  } = useFetchProduct();
   const { handleGetCartByUser } = useFetchCarts();
   const navigate = useNavigate();
 
@@ -119,6 +117,7 @@ function ProductFooter({ product, wishlistProduct, favoriteProduct, cart,deleteP
         justifyContent: "space-between",
         width: "100%",
       }}
+      
     >
       <Box>
         <IconButton
@@ -138,6 +137,7 @@ function ProductFooter({ product, wishlistProduct, favoriteProduct, cart,deleteP
               const newValue = Math.max(0, parseInt(e.target.value) || 0);
               setQuantity(newValue);
             }}
+            disabled
             size="small"
             style={{ width: "80px", padding: "0 15px" }}
           />
@@ -186,7 +186,10 @@ function ProductFooter({ product, wishlistProduct, favoriteProduct, cart,deleteP
             </IconButton>
           </>
         )}
+           
+           {memoizedLikeProductState && <HeartAnimation containerId={`heart-container-${product?._id}`} />}
       </Box>
+
     </Box>
   );
 }

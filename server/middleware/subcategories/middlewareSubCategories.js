@@ -8,7 +8,7 @@ const {
 } = require("../../validation/subcaregories/subcategoriesvalidationservices");
 const express = require("express");
 const router = express.Router();
-///handlerror
+
 router.post("/", async (request, response) => {
   try {
     let subcategoryFromAdmin = request.body;

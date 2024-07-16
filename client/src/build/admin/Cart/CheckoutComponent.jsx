@@ -11,7 +11,7 @@ import useFetchOrders from "../../services/hooks/useFetchOrders";
 import { useSelector } from "react-redux";
 function CheckoutComponent({ open, onClose, onContinue }) {
 
-  const imageUrl = "../images/E-commerce website.jpeg";
+  const imageUrl = "../assets/images/E-commerce website.jpeg";
   return (
     <Dialog open={open} onClose={onClose}>
       <Grid item sx={12}>

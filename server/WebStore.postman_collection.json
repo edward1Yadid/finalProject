@@ -34,7 +34,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8181/products/123",
+							"raw": "http://localhost:8181/products/663f83e32ef00a03f67f4a17/details",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -42,7 +42,8 @@
 							"port": "8181",
 							"path": [
 								"products",
-								"123"
+								"663f83e32ef00a03f67f4a17",
+								"details"
 							]
 						}
 					},
@@ -107,7 +108,7 @@
 					"response": []
 				},
 				{
-					"name": "New Request",
+					"name": "add to wishlish",
 					"request": {
 						"method": "GET",
 						"header": [
@@ -269,66 +270,25 @@
 					"response": []
 				},
 				{
-					"name": "getAllUsers",
+					"name": "Reguster",
 					"request": {
-						"method": "GET",
-						"header": []
-					},
-					"response": []
-				},
-				{
-					"name": "Delete user by admin",
-					"request": {
-						"method": "DELETE",
+						"method": "POST",
 						"header": [
 							{
-								"key": "x-auth-token",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjQzYmRlZjZjMzgyMWRhZjZhNWI3NzkiLCJpc0FkbWluIjp0cnVlLCJuYW1lIjp7ImZpcnN0IjoiZWRzIiwibWlkZGxlIjoiZWQiLCJsYXN0IjoiZWQiLCJfaWQiOiI2NjQzYmRlZjZjMzgyMWRhZjZhNWI3N2EifSwiaWF0IjoxNzE4MzgzNjA1fQ.XKmJFDvhQI_eRAVmtiSsIf7i06AwzbOiKipXObPy6mQ",
+								"key": "",
+								"value": "",
 								"type": "text"
 							}
 						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\"userID\":\"665b5a8be636e2dff3937642\"}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
 						"url": {
-							"raw": "http://localhost:8181/users/admin/deleteuser",
+							"raw": "http://localhost:8181/users",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8181",
 							"path": [
-								"users",
-								"admin",
-								"deleteuser"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "changePermissionByAdmin",
-					"request": {
-						"method": "PATCH",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8181/users/admin/changePermission/66421c3d53cbe1767b2e4b2a",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8181",
-							"path": [
-								"users",
-								"admin",
-								"changePermission",
-								"66421c3d53cbe1767b2e4b2a"
+								"users"
 							]
 						}
 					},
@@ -377,7 +337,7 @@
 					"response": []
 				},
 				{
-					"name": "delete cart user",
+					"name": "remove item form cart",
 					"request": {
 						"method": "DELETE",
 						"header": [],
@@ -391,7 +351,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8181/cart/6643bdf96c3821daf6a5b780/delete",
+							"raw": "http://localhost:8181/cart/remove",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -399,8 +359,7 @@
 							"port": "8181",
 							"path": [
 								"cart",
-								"6643bdf96c3821daf6a5b780",
-								"delete"
+								"remove"
 							]
 						}
 					},

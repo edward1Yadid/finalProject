@@ -8,9 +8,10 @@ import Orders from "../admin/CRM/dashboard/orders/component/Orders";
 import Products from "../helpers/components/products/Products";
 import { useSelector } from "react-redux";
 import useFetchCarts from "./hooks/useFetchCarts";
+import Models from "../components/Models";
 
 
-const ExpirienceCustomers = ({ Isloading, categoires, error, products,wishlistProduct,OrdersStatus,favoriteProduct,deleteProduct,changeStatus }) => {
+const ExpirienceCustomers = ({ Isloading, categoires, error, products,wishlistProduct,OrdersStatus,favoriteProduct,deleteProduct,changeStatus,models }) => {
   const user = useSelector((appState) => appState.user);
 const {handleGetCartByUser}=useFetchCarts()
   const [cart,setCart]=useState(null);
@@ -46,6 +47,13 @@ const {handleGetCartByUser}=useFetchCarts()
     if (!OrdersStatus?.length)
       return <Typography>Oops... it seems there are no orders to display</Typography>;
     return <Orders OrdersStatus={OrdersStatus} changeStatus={changeStatus} />;
+  }
+
+  if (models) {
+
+    if (!models?.length)
+      return <Typography>Oops... it seems there are no Models to display</Typography>;
+    return <Models models={models}  />;
   }
 
 };

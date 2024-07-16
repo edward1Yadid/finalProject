@@ -41,7 +41,6 @@ function HomePage() {
 
   const { handleGetAllProducts, value: { error, Isloading } } = useFetchProduct();
   const [productsall, setProduct] = useState(null);
-
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -90,12 +89,13 @@ function HomePage() {
                       <InputLabel id="color-label" sx={{ fontWeight: "bold", fontSize: "1.5rem" }}>
                         Color
                       </InputLabel>
-                      <Select labelId="color-label" id="color" {...register("Color")} label="Color" error={!!errors.Color} defaultValue={"Blue"}>
+                      <Select labelId="color-label" id="color" {...register("Color")} label="Color" error={!!errors.Color} defaultValue={"Blue"} required>
                         {["Gray", "Yellow", "White", "Black", "BlueLight", "Pink", "Blue"].map((color) => (
                           <MenuItem key={color} value={color}>
                             {color}
                           </MenuItem>
                         ))}
+                        
                       </Select>
                       {errors.Color && (
                         <Typography color="error">
@@ -131,7 +131,7 @@ function HomePage() {
                   <Grid item xs={12} md={3}>
                     <FormControl fullWidth>
                       <InputLabel id="subcategory-label">Subcategory</InputLabel>
-                      <Select labelId="subcategory-label" id="subcategory" {...register("Subcategory")} label="Subcategory" error={!!errors.Subcategory} defaultValue={"Shose"}>
+                      <Select   labelId="subcategory-label" id="subcategory" {...register("Subcategory")} label="Subcategory" error={!!errors.Subcategory} defaultValue={"Shose"}>
 
                         {["Tshirt", "Pants", "Shose"].map((Subcategory) => (
                           <MenuItem key={Subcategory} value={Subcategory}>
@@ -157,7 +157,7 @@ function HomePage() {
                           helperText={errors.minPrice?.message}
                         />
                         <span style={{ margin: "0 5px" }} />
-                        <TextField {...register("maxPrice")} type="text" label="Max Price" error={!!errors.maxPrice} helperText={errors?.maxPrice?.message} />
+                        <TextField required {...register("maxPrice")} type="text" label="Max Price" error={!!errors.maxPrice} helperText={errors?.maxPrice?.message} />
                       </div>
                     </Box>
                   </Grid>

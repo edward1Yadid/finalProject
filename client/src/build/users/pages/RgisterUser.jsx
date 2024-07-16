@@ -19,7 +19,7 @@ function RgisterUser() {
   const {
     handleSubmit,
     register,
-    formState: { errors, isDirty, isValid },
+    formState: { errors },
     reset,
   } = useForm({
     defaultValues: initialSignUpform,
@@ -31,10 +31,12 @@ function RgisterUser() {
   }; 
   const registerSubmit = async (user) => {
     let normalizeduser = await normalizeUser(user);
+  
     const userFromData=await registerUser(normalizeduser);
+    navigate(() => NavigateToComponents.HomePage);
     appStore.dispatch(authActionCreator.register({_id:userFromData._id,isAdmin:false,name:userFromData.name}));
     await loginApi({ email: user.email, password: user.password });
-    navigate(() => NavigateToComponents.HomePage);
+ 
 
   };
   return (

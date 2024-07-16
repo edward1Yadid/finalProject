@@ -29,7 +29,7 @@ function Products({ products, wishlistProduct, favoriteProduct,cart,deleteProduc
         }}
       >
         {products &&
-          products.map((product, index) => {
+          products?.map((product, index) => {
             return (
               <ProductGeneral
                 product={product}

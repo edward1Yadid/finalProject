@@ -10,7 +10,7 @@ const { normalizeCategoryRaw } = require("./normalizeCategoryRaw");
 const express = require("express");
 const router = express.Router();
 
-//handlerrror
+
 router.get("/", async (request, response) => {
   try {
     let categoires = await getAllCategories();
@@ -19,7 +19,7 @@ router.get("/", async (request, response) => {
     return handleErrorCategories(response, error.status || 500, error.message);
   }
 });
-//handlerrror
+
 router.post("/", async (request, response) => {
   try {
     let categoryFromAdmin = request.body;

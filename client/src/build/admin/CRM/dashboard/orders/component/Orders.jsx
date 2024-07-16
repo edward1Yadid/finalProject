@@ -45,7 +45,7 @@ function Orders({OrdersStatus,changeStatus}) {
 
       <Grid  item xs={6}   >
         {OrdersStatus &&
-          OrdersStatus.map((OrderStatus, index) => (
+          OrdersStatus?.map((OrderStatus, index) => (
             <Grid item xs={6} sm={12} key={index}>
               <Order OrderStatus={OrderStatus} changeStatus={changeStatus} />
             </Grid>

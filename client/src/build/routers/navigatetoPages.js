@@ -2,6 +2,7 @@ const NavigateToComponents = {
   //general
   HomePage: "/",
   About: "/About-page",
+  OurModels:"/models-page",
   //users
   SignUp: "/signup-page",
   LoginPage: "/login-page",
@@ -29,6 +30,8 @@ const NavigateToComponents = {
   CREATE_Profuct: "/create-Profuct",
   MANAGEQIANTITY:"/manageQuantity",
   Manageorders: "/manage-orders",
+
+
 };
 
 export default NavigateToComponents;

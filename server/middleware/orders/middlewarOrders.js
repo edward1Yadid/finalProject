@@ -22,8 +22,6 @@ router.post("/:id", authorizationForAccsesUser, async (request, response) => {
     return handleError(response, 403, "Access denied");
   }
   try {
-
-
     if (ENVIRONMENT === "development") {
       const DB_URI =        process.env.MONGODB_URI || "mongodb://localhost:27017/webstore";
       client = new MongoClient(DB_URI);
@@ -41,16 +39,19 @@ router.post("/:id", authorizationForAccsesUser, async (request, response) => {
     }
     await client.connect();
     const db = client.db();
-    const user = await User.findById(userID);
 
+        // Find the user by ID in the User collection
+    const user = await User.findById(userID);
     if (!user) {
       return response.status(404).json({ error: "User not found" });
     }
+      // Find the user's cart by user ID
     const detailsCart = await Cart.findOne({ user: userID });
     if (!detailsCart) {
       return response.status(404).json({ error: "Cart not found" });
     }
     const cart_id = detailsCart?._id;
+      // Define aggregation pipeline to calculate total price of items in the cart
     const pipeline = [
       { $match: { _id: cart_id } },
       { $unwind: "$items" },
@@ -80,17 +81,23 @@ router.post("/:id", authorizationForAccsesUser, async (request, response) => {
         },
       },
     ];
+      // Execute aggregation pipeline to get total price of the cart
     const result = await db.collection("carts").aggregate(pipeline).toArray();
 
     if (result.length === 0) {
       return response.status(404).json({ error: "Cart not found" });
     }
+        // Calculate final total price including discounts and taxes
     let totalPrice = result[0].total_price;
     totalPrice = totalPrice * (1 - discountPercent) * (1 + taxRate);
+
+        // Map products in the cart to appropriate format for order creation
     const products = detailsCart.items.map((item) => ({
       product: item.product.toString(),
       quantity: item.quantity,
     }));
+
+      // Create order object
     let order = {
       user: new ObjectId(userID).toString(),
       products: products.map((item) => ({
@@ -99,12 +106,13 @@ router.post("/:id", authorizationForAccsesUser, async (request, response) => {
       })),
       totalPrice,
     };
-
+// Validate order using Joi schema
     const { error } = joiOrderCreate(order);
     if (error) {
       return response.status(400).json({ error: error.details[0].message });
     }
 
+      // Update product stock levels in the database
     for (let i = 0; i < products.length; i++) {
       await db
         .collection("products")
@@ -113,13 +121,16 @@ router.post("/:id", authorizationForAccsesUser, async (request, response) => {
           { $inc: { stock: -products[i].quantity } }
         );
     }
+     // Create new order in the database
     const newOrder = await createOrder(userID, products, totalPrice);
+       // Delete user's cart after order creation
     await Cart.deleteOne({ user: userID });
     response.status(200).send(newOrder);
   } catch (error) {
     console.error(error.message);
     response.status(500).json({ error: "An error occurred" });
   } finally {
+        // Close MongoDB client connection in all cases
     await client.close();
   }
 });

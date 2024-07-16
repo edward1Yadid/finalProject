@@ -18,7 +18,7 @@ function ErrorPage() {
                     </Button>
                 </Grid>
                 <Grid item xs={12} md={4} justifyContent="center">
-                    <img src="./images/E-commerce website.jpeg" alt="ErrorPicture" width="100%"
+                    <img src="./assets/images/E-commerce website.jpeg" alt="ErrorPicture" width="100%"
                     
     
                     />

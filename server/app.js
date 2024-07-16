@@ -4,6 +4,7 @@ const app = express();
 const cors = require('cors');
 const router=require("./routers/router")
 const connfig=require("config");
+const logger = require("./morgan/logger");
 const { connectToDataBase } = require("./db/databaseConnectServices");
 const PORT =connfig.get("PORT")
 const limiter = rateLimit({
@@ -14,6 +15,7 @@ const limiter = rateLimit({
 app.use(limiter);
 app.use(express.json());
 app.use(cors());
+app.use(logger);
 app.use(router)
 app.listen(PORT, async () => {
   console.log(`listening on : http://localhost:${PORT}`);

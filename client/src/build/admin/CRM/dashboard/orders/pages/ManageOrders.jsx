@@ -9,12 +9,9 @@ function ManageOrders() {
   useEffect(() => {
     const fetchOrders = async () => {
       try {
-        // if (user && user?._id) {
           const orders = await getAllOrdersByAdmin(user?._id);
           setOrderStatus(orders);
-        // } else {
-        //   console.error("User ID not available for fetching orders.");
-        // }
+       
       } catch (error) {
         console.error(error);
       }
