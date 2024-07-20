@@ -16,7 +16,8 @@ import { useSelector } from "react-redux";
 import Rightbar from "./Rightbar/Rightbar";
 
 import UserLogged from "./Menu/UserLogged";
-import UserNotLogged from "./Menu/UserNotLogged";
+import UserNotLogged from './Menu/userNotLogged';
+
 
 function ResponsiveAppBar() {
   const user = useSelector((appState) => appState.user);
