@@ -14,8 +14,9 @@ import NavigateToComponents from "../routers/navigatetoPages";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import Rightbar from "./Rightbar/Rightbar";
-import UserNotLogged from "./Menu/UserNotLogged";
+
 import UserLogged from "./Menu/UserLogged";
+import UserNotLogged from "./Menu/UserNotLogged";
 
 function ResponsiveAppBar() {
   const user = useSelector((appState) => appState.user);
