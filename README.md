@@ -128,3 +128,36 @@ For API testing and documentation, you can use the following Postman collection:
 https://documenter.getpostman.com/view/29937735/2sA3e5eoCT#8985f729-d18e-43dd-a2e7-88138826ba4f
 
 
+##config
+###development
+{
+    "NODE_ENV": "development",
+    "PORT": 8181,
+    "TOKEN_GENERATOR": "jwt",
+    "DB_NAME": null,
+    "DB_PASSWORD":null,
+    "LOGGER": "morgan",
+    "DB": "MONGODB",
+    "VALIDATION":"Joi",
+    "HashPassword": "bcryptjs",
+    "JWT_KEY": "my_private_key"
+  }
+uri: mongodb://localhost:27017/webstore
+
+###production
+{
+    "NODE_ENV": "production",
+    "PORT": 8181,
+    "TOKEN_GENERATOR": "jwt",
+    "DB_NAME": "ediyadid",
+    "DB_PASSWORD": "f9c5rPvNiQR5MwJ1",
+    "LOGGER": "morgan",
+    "DB": "MONGODB",
+    "VALIDATION":"Joi",
+    "HashPassword": "bcryptjs",
+    "JWT_KEY": "my_private_key"
+  }
+
+uri: mongodb+srv://${DB_NAME}:${DB_PASSWORD}@cluster0.kxwl9ix.mongodb.net/WebStore
+
+
