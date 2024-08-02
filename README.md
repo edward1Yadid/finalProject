@@ -128,8 +128,8 @@ For API testing and documentation, you can use the following Postman collection:
 https://documenter.getpostman.com/view/29937735/2sA3e5eoCT#8985f729-d18e-43dd-a2e7-88138826ba4f
 
 
-##config
-###development
+## config
+### development
 {
     "NODE_ENV": "development",
     "PORT": 8181,
@@ -144,7 +144,7 @@ https://documenter.getpostman.com/view/29937735/2sA3e5eoCT#8985f729-d18e-43dd-a2
   }
 uri: mongodb://localhost:27017/webstore
 
-###production
+### production
 {
     "NODE_ENV": "production",
     "PORT": 8181,
